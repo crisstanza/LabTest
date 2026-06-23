@@ -1,0 +1,49 @@
+:root {
+	--cell-size: 32px;
+	--border-width: 3px;
+	--border-style: solid;
+	--border-color: #333;
+}
+
+html,
+body {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: aliceblue;
+}
+
+table {
+	border-collapse: collapse;
+	background-color: azure;
+	box-shadow: 0px 0px 100px #999;
+}
+
+table tbody tr td {
+	width: var(--cell-size);
+	height: var(--cell-size);
+	border: var(--border-width) dotted #DDD;
+}
+
+table tbody tr td.top {
+	border-top: var(--border-width) var(--border-style) var(--border-color);
+}
+
+table tbody tr td.right {
+	border-right: var(--border-width) var(--border-style) var(--border-color);
+}
+
+table tbody tr td.bottom {
+	border-bottom: var(--border-width) var(--border-style) var(--border-color);
+}
+
+table tbody tr td.left {
+	border-left: var(--border-width) var(--border-style) var(--border-color);
+}
