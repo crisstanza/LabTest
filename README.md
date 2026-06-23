@@ -9,6 +9,10 @@ Demonstração de uso de:
 - configurações e snippets do VSCode
 - cores em script bash
 
-## Para rodar localmente:
+## Para Rodar Localmente:
 
 `./.bash clean minifyCSS transpile minifyJS run`
+
+## GitHub Pages (demonstração):
+
+https://crisstanza.github.io/LabTest/

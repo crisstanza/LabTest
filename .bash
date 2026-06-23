@@ -42,6 +42,13 @@ run() {
     npx vite
 }
 
+build() {
+    clean
+    minifyCSS
+    transpile
+    minifyJS
+}
+
 ########################## HIC SUNT DRACONES ##########################
 
 RED_COLOR='\033[0;31m'
