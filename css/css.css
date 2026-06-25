@@ -48,3 +48,23 @@ table tbody tr td.bottom {
 table tbody tr td.left {
 	border-left: var(--border-width) var(--border-style) var(--border-color);
 }
+
+table tbody tr td.no-right {
+	border-right: none;
+}
+
+table tbody tr td.no-left {
+	border-left: none;
+}
+
+table tbody tr td.player {
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-image: url(../img/octocat.png);
+	filter: drop-shadow(0 0 5px rgba(255, 0, 255, 0.25));
+}
+
+table tbody tr td.player.flip {
+	transform: scaleX(-1);
+}

@@ -2,17 +2,23 @@
 
 Demonstração de uso de:
 
-- TypeScript
-- módulos JavaScript
-- minificação de CSS e JavaScript
-- vite
-- configurações e snippets do VSCode
-- cores em script bash
+- TypeScript;
+- módulos JavaScript;
+- minificação de CSS e JavaScript;
+- vite;
+- configurações e snippets do VSCode;
+- cores em script bash; e
+- manipulação de janelas Mintty no Windows.
 
-## Para Rodar Localmente:
+## Para rodar e desenvolver localmente:
 
-`./.bash clean minifyCSS transpile minifyJS run`
+- execute o script `.run-dev.bat`.
 
-## GitHub Pages (demonstração):
+## Para gerar e testar um build localmente
+
+- execute o script `.build.bat` para gerar; e
+- execute o script `.run.bat` para testar.
+
+## GitHub pages (demonstração):
 
 https://crisstanza.github.io/LabTest/

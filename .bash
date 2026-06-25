@@ -49,6 +49,25 @@ build() {
     minifyJS
 }
 
+devMode() {
+    local FILE=index.html
+    _replaceInFile 'css-min\/' 'css\/' ${FILE}
+    _replaceInFile 'js-min\/' 'js\/' ${FILE}
+}
+
+buildMode() {
+    local FILE=index.html
+    _replaceInFile 'css\/' 'css-min\/' ${FILE}
+    _replaceInFile 'js\/' 'js-min\/' ${FILE}
+}
+
+function _replaceInFile() {
+    local OLD="${1}"
+    local NEW="${2}"
+    local FILE="${3}"
+    sed -i "s/${OLD}/${NEW}/g" "${FILE}"
+}
+
 ########################## HIC SUNT DRACONES ##########################
 
 RED_COLOR='\033[0;31m'
