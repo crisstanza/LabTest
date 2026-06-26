@@ -17,7 +17,7 @@ Demonstração de uso de:
 ## Para gerar e testar um build localmente
 
 - execute o script `.build.bat` para gerar; e
-- execute o script `.run.bat` para testar.
+- execute o script `.run-build.bat` para testar.
 
 ## GitHub pages (demonstração):
 

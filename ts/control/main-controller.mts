@@ -1,18 +1,16 @@
+import { CssClasses, EventKeys } from "../constants/constants.mjs";
 import { Player } from "../model/player.mjs";
+import { RandomUtils } from "../utils/random-utils.mjs";
+import { Utils } from "../utils/utils.mjs";
 
 export class MainController {
   static readonly #ROWS = 16;
   static readonly #COLUMNS = 24;
 
-  static readonly TOP = "top";
-  static readonly RIGHT = "right";
-  static readonly BOTTOM = "bottom";
-  static readonly LEFT = "left";
+  static readonly #BORDERS = [CssClasses.TOP, CssClasses.RIGHT, CssClasses.BOTTOM, CssClasses.LEFT];
 
-  static readonly #BORDERS = [MainController.TOP, MainController.RIGHT, MainController.BOTTOM, MainController.LEFT];
-
-  static readonly #NO_RIGHT = "no-right";
-  static readonly #NO_LEFT = "no-left";
+  readonly #randomUtils: RandomUtils = new RandomUtils();
+  readonly #utils: Utils = new Utils();
 
   #player: Player | null = null;
 
@@ -23,47 +21,47 @@ export class MainController {
       for (let j = 0; j < MainController.#COLUMNS; j++) {
         const cell = row.insertCell(j);
         if (this.#isFirstRow(i)) {
-          cell.classList.add(MainController.TOP);
+          cell.classList.add(CssClasses.TOP);
         } else if (this.#isLastRow(i)) {
-          cell.classList.add(MainController.BOTTOM);
+          cell.classList.add(CssClasses.BOTTOM);
         }
         if (!this.#isFirstRow(i) && this.#isFirstColumn(j)) {
-          cell.classList.add(MainController.LEFT);
+          cell.classList.add(CssClasses.LEFT);
         } else if (!this.#isLastRow(i) && this.#isLastColumn(j)) {
-          cell.classList.add(MainController.RIGHT);
+          cell.classList.add(CssClasses.RIGHT);
         }
 
         if (this.#rand()) {
-          cell.classList.add(MainController.TOP);
+          cell.classList.add(CssClasses.TOP);
         }
         if (this.#rand()) {
-          cell.classList.add(MainController.BOTTOM);
+          cell.classList.add(CssClasses.BOTTOM);
         }
         if (this.#rand() && !(this.#isFirstRow(i) && this.#isFirstColumn(j))) {
-          cell.classList.add(MainController.LEFT);
+          cell.classList.add(CssClasses.LEFT);
         }
         if (this.#rand() && !(this.#isLastRow(i) && this.#isLastColumn(j))) {
-          cell.classList.add(MainController.RIGHT);
+          cell.classList.add(CssClasses.RIGHT);
         }
 
-        if (MainController.#BORDERS.every((className) => cell.classList.contains(className))) {
+        if (this.#utils.containsAll(cell.classList, MainController.#BORDERS)) {
           if (this.#rand()) {
-            cell.classList.remove(MainController.TOP);
+            cell.classList.remove(CssClasses.TOP);
           }
           if (this.#rand()) {
-            cell.classList.remove(MainController.RIGHT);
+            cell.classList.remove(CssClasses.RIGHT);
           }
           if (this.#rand()) {
-            cell.classList.remove(MainController.BOTTOM);
+            cell.classList.remove(CssClasses.BOTTOM);
           }
           if (this.#rand()) {
-            cell.classList.remove(MainController.LEFT);
+            cell.classList.remove(CssClasses.LEFT);
           }
         }
       }
     }
-    table.rows[0].cells[0].classList.add(MainController.#NO_LEFT);
-    table.rows[MainController.#ROWS - 1].cells[MainController.#COLUMNS - 1].classList.add(MainController.#NO_RIGHT);
+    table.rows[0].cells[0].classList.add(CssClasses.NO_LEFT);
+    table.rows[MainController.#ROWS - 1].cells[MainController.#COLUMNS - 1].classList.add(CssClasses.NO_RIGHT);
     const lab = document.getElementById("lab");
     if (lab) {
       lab.innerText = "";
@@ -80,19 +78,19 @@ export class MainController {
   #eventKeyDown(event: KeyboardEvent) {
     if (this.#player) {
       switch (event.key) {
-        case "ArrowUp":
+        case EventKeys.ArrowUp:
           event.preventDefault();
           this.#player.moveUp();
           break;
-        case "ArrowRight":
+        case EventKeys.ArrowRight:
           event.preventDefault();
           this.#player.moveRight();
           break;
-        case "ArrowDown":
+        case EventKeys.ArrowDown:
           event.preventDefault();
           this.#player.moveDown();
           break;
-        case "ArrowLeft":
+        case EventKeys.ArrowLeft:
           event.preventDefault();
           this.#player.moveLeft();
           break;
@@ -124,10 +122,6 @@ export class MainController {
   }
 
   #rand(): boolean {
-    return this.#randBetween(1, 4) == 1;
-  }
-
-  #randBetween(min: number, max: number): number {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+    return this.#randomUtils.randBetween(1, 4) == 1;
   }
 }

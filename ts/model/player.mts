@@ -1,9 +1,6 @@
-import { MainController } from "../control/main-controller.mjs";
+import { CssClasses } from "../constants/constants.mjs";
 
 export class Player {
-  static readonly #PLAYER = "player";
-  static readonly #FLIP = "flip";
-
   #table: HTMLTableElement;
   #i: number;
   #j: number;
@@ -16,20 +13,20 @@ export class Player {
   }
 
   #showPlayer() {
-    this.#table.rows[this.#i].cells[this.#j].classList.add(Player.#PLAYER);
+    this.#table.rows[this.#i].cells[this.#j].classList.add(CssClasses.PLAYER);
   }
   #removePlayer(isFlip: boolean) {
-    this.#table.rows[this.#i].cells[this.#j].classList.remove(Player.#PLAYER);
+    this.#table.rows[this.#i].cells[this.#j].classList.remove(CssClasses.PLAYER);
     if (isFlip) {
-      this.#table.rows[this.#i].cells[this.#j].classList.remove(Player.#FLIP);
+      this.#table.rows[this.#i].cells[this.#j].classList.remove(CssClasses.FLIP);
     }
   }
 
   #isFlip(): boolean {
-    return this.#table.rows[this.#i].cells[this.#j].classList.contains(Player.#FLIP);
+    return this.#table.rows[this.#i].cells[this.#j].classList.contains(CssClasses.FLIP);
   }
   #flipPlayer() {
-    this.#table.rows[this.#i].cells[this.#j].classList.add(Player.#FLIP);
+    this.#table.rows[this.#i].cells[this.#j].classList.add(CssClasses.FLIP);
   }
 
   moveUp(): void {
@@ -95,29 +92,29 @@ export class Player {
   }
 
   #hasTopWall(): boolean {
-    return this.#table.rows[this.#i].cells[this.#j].classList.contains(MainController.TOP);
+    return this.#table.rows[this.#i].cells[this.#j].classList.contains(CssClasses.TOP);
   }
   #hasRightWall(): boolean {
-    return this.#table.rows[this.#i].cells[this.#j].classList.contains(MainController.RIGHT);
+    return this.#table.rows[this.#i].cells[this.#j].classList.contains(CssClasses.RIGHT);
   }
   #hasBottomWall(): boolean {
-    return this.#table.rows[this.#i].cells[this.#j].classList.contains(MainController.BOTTOM);
+    return this.#table.rows[this.#i].cells[this.#j].classList.contains(CssClasses.BOTTOM);
   }
   #hasLeftWall(): boolean {
-    return this.#table.rows[this.#i].cells[this.#j].classList.contains(MainController.LEFT);
+    return this.#table.rows[this.#i].cells[this.#j].classList.contains(CssClasses.LEFT);
   }
 
   #hasBelowTopWall(): boolean {
-    return this.#table.rows[this.#i + 1].cells[this.#j].classList.contains(MainController.TOP);
+    return this.#table.rows[this.#i + 1].cells[this.#j].classList.contains(CssClasses.TOP);
   }
   #hasPreviousRightWall(): boolean {
-    return this.#table.rows[this.#i].cells[this.#j - 1].classList.contains(MainController.RIGHT);
+    return this.#table.rows[this.#i].cells[this.#j - 1].classList.contains(CssClasses.RIGHT);
   }
   #hasAboveBottomWall(): boolean {
-    return this.#table.rows[this.#i - 1].cells[this.#j].classList.contains(MainController.BOTTOM);
+    return this.#table.rows[this.#i - 1].cells[this.#j].classList.contains(CssClasses.BOTTOM);
   }
   #hasNextLeftWall(): boolean {
-    return this.#table.rows[this.#i].cells[this.#j + 1].classList.contains(MainController.LEFT);
+    return this.#table.rows[this.#i].cells[this.#j + 1].classList.contains(CssClasses.LEFT);
   }
 
   #isInFirstRow(): boolean {
